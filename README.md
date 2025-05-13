@@ -1,40 +1,109 @@
-# EquiBrief
+# 📊 EquiBrief – AI Summarizer of Stocks
 ![EquiBrief logo](https://github.com/user-attachments/assets/3c53c24d-ded2-46bc-b4b4-8dbe27d528be)
 
-AI Summarizer of Stocks
+An AI-powered tool that **extracts and summarizes key financial insights** from Indian companies’ **annual reports**, **earnings call transcripts**, and **investor presentations**.
 
-An AI-powered tool that extracts and summarizes key financial information from Indian companies’ annual reports, earnings call transcripts, and investor presentations.
+---
 
-✅ Designed to make important financial insights affordable and accessible for small finance firms, NBFCs, and individual analysts — without the high costs of platforms like Bloomberg or FactSet.
+### ✅ Mission
+Make financial intelligence **affordable and accessible** for:
+- Small finance firms
+- NBFCs
+- Individual analysts
 
-💡 Why This Matters
+💸 Say goodbye to expensive platforms like Bloomberg and FactSet.
 
-Financial data should be accessible, not a luxury.
+---
 
-This tool democratizes access to structured insights for emerging finance professionals, startups, and smaller funds who need reliable data — without paying $25,000 a year. ⸻
+### 💡 Why This Matters
+> Financial data should be accessible — not a luxury.
 
-🚀 Project Goals • Parse public documents (PDFs/text) from company websites, NSE/BSE, etc. • Extract critical financial data: • Revenue, Net Profit, Growth Rates • Loan Book Size (for banks/NBFCs) • Gross and Net NPA figures • Management commentary and outlook • Expansion plans and key risks • Deliver clean, structured summaries ready for quick analysis. • Build a low-cost, scalable alternative to expensive data platforms.
+EquiBrief democratizes access to structured insights for:
+- Emerging finance professionals  
+- Startups  
+- Small funds  
 
-🧩 Implementation Details
+...who need **reliable data without paying $25,000/year**.
 
-The AI Stock Summarizer works in a modular pipeline, broken down into three major stages:
+---
 
-Data Ingestion • Source: Publicly available documents such as annual reports, earnings call transcripts, and investor presentations from Indian company websites, NSE/BSE filings. • Files are manually downloaded (initial MVP) into the /data/ folder.
+### 🚀 Project Goals
+- 🔍 Parse public documents from company websites, NSE/BSE
+- 📊 Extract key financial data:
+  - Revenue, Net Profit, Growth Rates  
+  - Loan Book Size (banks/NBFCs)  
+  - Gross & Net NPA figures  
+  - Management commentary and future outlook  
+  - Expansion plans and risk disclosures
+- 🧾 Deliver clean, structured summaries ready for analysis
+- 💻 Build a **low-cost**, **scalable** alternative to expensive platforms
 
-Document Parsing • Text Extraction: Use pdfplumber to extract text cleanly from structured PDFs. • OCR (optional): For scanned or image-based PDFs, fallback to OCR solutions like pytesseract.
+---
 
-Financial Information Summarization • Prompt-based LLM Summarization: Send extracted text to OpenAI’s GPT models (gpt-4o or gpt-3.5-turbo) using custom finance-focused prompts. • Output: Extract structured key metrics: • Revenue, Profit, Growth % • Gross and Net NPAs (for banks/NBFCs) • Management Tone/Outlook • Expansion/Risk commentary
+### 🧩 Implementation Overview
 
-Data Storage • Summaries are saved as: • Text summaries • JSON files for structured data • (Later) Could be inserted into a database (Postgres/SQLite)
+#### 1. Data Ingestion
+- **Source**: Annual reports, earnings calls, investor decks  
+- **Input**: PDFs or text files, manually downloaded into the `/data/` folder (MVP)
 
-Frontend Display • Simple Flask + React dashboard or CSV download. • Features: Search by Company, Sector, Time Period, Financial Metrics.
+#### 2. Document Parsing
+- **Text Extraction**: Use `pdfplumber` for clean text from structured PDFs  
+- **OCR (Fallback)**: Use `pytesseract` for scanned or image-based reports
 
-🏛️ System Design Flow
+#### 3. Summarization Engine
+- **LLM-based Extraction**: Send parsed text to GPT-4o / GPT-3.5-Turbo  
+- **Custom Prompts**: Finance-specific templates to extract:
+  - Revenue, Profit, Growth %  
+  - Gross/Net NPAs (for banks/NBFCs)  
+  - Management Tone / Strategic Outlook  
+  - Expansion & Risk commentary
 
-Here’s the end-to-end architecture of the system:
+#### 4. Data Storage
+- Save summaries as:
+  - 📄 Text summaries  
+  - 🔧 JSON (for structured data)  
+  - (Optional) Insert into Postgres / SQLite
 
-[Public Reports (PDFs)] ↓ [PDF Parser (pdfplumber)] ↓ [Extracted Raw Text] ↓ [Summarizer Engine (OpenAI GPT)] ↓ [Financial Summary (structured JSON/text)] ↓ [Storage (CSV/JSON/Database)] ↓ [Frontend Dashboard (Optional - Flask/React)]
+#### 5. Frontend Display
+- 🔧 Simple Flask + React dashboard *(or)* CSV download
+- 🔍 Search by: Company, Sector, Year, Metrics
 
-📦 Quick Example (Full Path)
+---
 
-Input: AU Small Finance Bank FY24 Annual Report.pdf ↓ Extract text via pdfplumber ↓ Send to GPT-4o: "Extract Revenue, Net Profit, NPAs, Management Outlook" ↓ Receive structured summary ↓ Save into summaries/au_small_finance_bank_2024.json ↓ Display in dashboard or export CSV for analysis
+### 🏛️ System Architecture
+
+```
+[Public Reports (PDFs)]
+          ↓
+ [PDF Parser – pdfplumber]
+          ↓
+   [Extracted Raw Text]
+          ↓
+ [Summarizer – GPT-4o/GPT-3.5]
+          ↓
+  [Structured Summary: JSON/Text]
+          ↓
+ [Storage – CSV, JSON, Database]
+          ↓
+ [Frontend Dashboard – Flask/React]
+```
+
+---
+
+### 📦 Example Workflow
+
+> Input: `AU_Small_Finance_Bank_FY24_Annual_Report.pdf`
+
+1. Extract text via `pdfplumber`  
+2. Send to GPT-4o:  
+   _"Extract Revenue, Net Profit, NPAs, Management Outlook"_  
+3. Receive structured summary  
+4. Save as: `summaries/au_small_finance_bank_2024.json`  
+5. View in dashboard or export to CSV
+"""
+
+# Save to a file
+output_path = Path("/mnt/data/README_EquiBrief.md")
+output_path.write_text(readme_content.strip())
+
+output_path.name
