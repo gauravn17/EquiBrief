@@ -1,4 +1,6 @@
-# GRhesearch
+# EquiBrief!
+[EquiBrief logo](https://github.com/user-attachments/assets/3c53c24d-ded2-46bc-b4b4-8dbe27d528be)
+
 AI Summarizer of Stocks
 
 An AI-powered tool that extracts and summarizes key financial information from Indian companies’ annual reports, earnings call transcripts, and investor presentations.
